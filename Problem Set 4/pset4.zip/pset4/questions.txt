@@ -1,0 +1,37 @@
+0.  The nubers of colors per format: BMP 2^32, GIF 2^8 JPG 2^24, PNG 2^24
+
+1.  The GIF format supports animation.
+
+2.  Lossless compression does not sacrifice picture quality to gain compression density unlike lossy compression.
+
+3.  The JPEG format uses lossy compression.
+
+4.  When a file is deleted on a file system, the first character of the files entry in the file system's directory is modified to indicate that it is "delete".  Also the system notes all the file's cluster on the it's list of free clusters.
+
+5.  The most effective way to prevent someone else from gaining access to your documents (including the ones you delete) is to encrypt the hard-drive.  In liue of that are scrubbing techniques that apply duplicate passes of data to each character in a cluster making it very difficult (if not impossible) for nearly anyone to recover.
+
+6.  stdint.h defines new interger types that are exact and thus portable.  The issue it addresses is the fact that a byte is not always 8 bits from machine to machine but these definitions are exact.
+
+7.  Programs that use the exact types uint8_t, uint32_t, int32_t, and uint16_t are more easily portable between machines and architectures because the values they define do not vary by definition.
+
+8.  A BYTE, DWORD, LONG, and WORD are 1, 4, 4, and 2 bytes long respecfully.
+
+9.  The first 2 bytes of a BMP must be BM.
+
+10. biSize defines the size in bytes of the BMP info header, where as bfSize defines the size in bytes of the entire BMP file.
+
+11. If biHeight is negative it means that the top of the image is defined starting right after the headers. 
+
+12. biBigCount defines the number of bits per pixel.
+
+13. fopen may return NULL whenever the file is not accesible for any reason, such as a permission issue or that the file name does not exist, etc.
+
+14. The reason the third item to fread is always 1 in our code is that with the structs that we have defined we are being very exact about the sizes of the structure we are using and we need only to read in one unit of these structures at as time. 
+
+15. If biWidth is 3, then padding will also be 3. 
+
+16. The fseek is the way to reposition the file position indicator.  It's comperable to moving the cursor.
+
+17. SEEK_CUR is the curent position of the file position indicator. 
+
+18. Rick Astley.

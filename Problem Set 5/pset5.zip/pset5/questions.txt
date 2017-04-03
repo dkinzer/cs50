@@ -1,0 +1,18 @@
+0.  Pneumonoultramicroscopicsilicovolcanoconiosis is a nonsense medical like term created for specific purpose of being the longest english word.  It doesn't really dersrve to be a word at all (but there you have it).  The Webster's dictionary online says it means "pneumoconiosis caused by inhalation of very fine silicate or quartz dust;" but that's actually not true.
+
+1.  getrusage stands for get resource usage and per it's name sake what it does is "get information about resource utilization".
+
+2.  struct rusage has 16 members/fields.
+
+3.  The reason before and after are passed as references is that getrusage expects an address to an rusage struct.
+
+4.  Given a pointer fp to a file, we initialize a character c with the first byte in the file, if that byte  equals EOF we stop otherwise we process the character.  If the character is an alpha or an internal single quote, then add the character to a array variable "word" that acts like a cache at the current index and up tick the index.  If the index (which corresponds to the size of the word) is greater than the size of the longest known word, then disregard the word by consuming all characters (without processing them) until the EOF or the next non alpha.  If the character is a number, then disregard the word with the number.  Finally, if the index is greater than zero than we've reached the end of a word; add '\0' to "word" buffer at index, and set index to 0 to start next round.  Uptick the word count to track the number of words. Check if the word is misspelled, if so uptick the misspelled words tracker.  Finally repeat until end of file is reached.
+
+5.  By checking each character at a time instead of using scanf to scan entire words at a time we avoid checking completely erroneous words as misspelled.  Of course we could check every character of the word scanned to avoid this, but then we are back to checking each characer at a time, so why not just do that to begin with.
+
+6.  The params for check and load are declared as const in order to ensure that their implemenations will not mutate the passed in parameters.
+
+7.  I implemented the dictionary using a trie, with a Boolean data field called is_word and a dictionary array of 27 nodes (one node per alpha letter plus one for the quote symbol).
+8.  The code was actually pretty fast from the get go.  Well, it was pretty fast to segfault in the start. The hardest part for me was freeing up the memory correctly. Then I was getting a seg fault on indexing past my array because I wasn't accounting for capital letters in the input.  But once it worked, it was very fast, and I don't think I can do much to make it faster. 
+9.  I didn't need to touch anything to make the code perform better.  I'm actually pretty impressed with how fast this is.  However, I did need to add some testing code to get over the issues with the seg faults. 
+10. I don't feel my code has any bottle necks that I need to address.  I'm very happy I chose to use the trie to implement this dictionary.
